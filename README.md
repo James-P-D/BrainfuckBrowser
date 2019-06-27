@@ -1,2 +1,4 @@
 # BrainfuckBrowser
-Simple browser-based Brainfuck interpreter in Javascript, HTML &amp; CSS
+
+A very simple browser-based [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter in Javascript, HTML &amp; CSS
+
