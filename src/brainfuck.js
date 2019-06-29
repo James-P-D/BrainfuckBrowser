@@ -54,8 +54,8 @@ var BrainFuck = new function()
         }
         else if (defaultProgramSelect == 'HelloWorld')
         {
-            // From https://esolangs.org/wiki/Hello_world_program_in_esoteric_languages#Brainfuck
-            document.getElementById('Program').value = '+[-[<<[+[--->]-[<<<]]]>>>-]>-.---.>..>.<<<<-.<+.>>>>>.>.<<.<-.';
+            // From https://codegolf.stackexchange.com/questions/55422/hello-world
+            document.getElementById('Program').value = '--->->->>+>+>>+[++++[>+++[>++++>-->+++<<<-]<-]<+++]>>>.>-->-.>..+>++++>+++.+>-->[>-.<<]';
         }
         else
         {
