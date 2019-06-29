@@ -32,7 +32,22 @@ var BrainFuck = new function()
 
     this.DefaultProgramSelect = function(defaultProgramSelect)
     {
-        if(defaultProgramSelect == 'Quine')
+		if(defaultProgramSelect == 'Alphabet')
+		{
+			document.getElementById('Program').value =
+			    '++++++++++++++++++++++++++\n'+
+				'>\n'+
+				'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n'+
+				'<\n'+
+				'[\n'+
+				' >\n'+
+				' .\n'+
+				' +\n'+
+				' <\n'+
+				' -\n'+
+				']';
+		}
+		else if(defaultProgramSelect == 'Quine')
         {
             // From https://github.com/itchyny/brainfuck/blob/master/quine.bf
             document.getElementById('Program').value = '->+>+++>>+>++>+>+++>>+>++>>>+>+>+>++>+>>>>+++>+>>++>+>+++>>++>++>>+>>+>++>++>+>>>>+++>+>>>>++>++>>>>+>>++>+>+++>>>++>>++++++>>+>>++>+>>>>+++>>+++++>>+>+++>>>++>>++>>+>>++>+>+++>>>++>>+++++++++++++>>+>>++>+>+++>+>+++>>>++>>++++>>+>>++>+>>>>+++>>+++++>>>>++>>>>+>+>++>>+++>+>>>>+++>+>>>>+++>+>>>>+++>>++>++>+>+++>+>++>++>>>>>>++>+>+++>>>>>+++>>>++>+>+++>+>+>++>>>>>>++>>>+>>>++>+>>>>+++>+>>>+>>++>+>++++++++++++++++++>>>>+>+>>>+>>++>+>+++>>>++>>++++++++>>+>>++>+>>>>+++>>++++++>>>+>++>>+++>+>+>++>+>+++>>>>>+++>>>+>+>>++>+>+++>>>++>>++++++++>>+>>++>+>>>>+++>>++++>>+>+++>>>>>>++>+>+++>>+>++>>>>+>+>++>+>>>>+++>>+++>>>+[[->>+<<]<+]+++++[->+++++++++<]>.[+]>>[<<+++++++[->+++++++++<]>-.------------------->-[-<.<+>>]<[+]<+>>>]<<<[-[-[-[>>+<++++++[->+++++<]]>++++++++++++++<]>+++<]++++++[->+++++++<]>+<<<-[->>>++<<<]>[->>.<<]<<]';
@@ -97,6 +112,7 @@ var BrainFuck = new function()
         this.program = [];
 		this.brackets = {};
 		var depth = 0;
+		var index = 0;
 
         for(var i = 0; i < sourceCode.length; i++)
         {
@@ -110,22 +126,24 @@ var BrainFuck = new function()
                 case OUTPUT :
                 {
                     this.program.push(sourceCode[i]);
+					index++;
                     break;
                 }                
                 case WHILE_NOT_ZERO :
                 {					
                     this.program.push(sourceCode[i]);
-                    this.startWhile[depth] = i;
+                    this.startWhile[depth] = index;
 					depth++;
+                    index++;
                     break;					
                 }
                 case END_WHILE :
                 {					
                     this.program.push(sourceCode[i]);
 					depth--;
-					this.brackets[i] = this.startWhile[depth];
-					this.brackets[this.startWhile[depth]] = i;
-					
+					this.brackets[index] = this.startWhile[depth];
+					this.brackets[this.startWhile[depth]] = index;
+					index++;
                     break;					
                 }
             }
@@ -173,6 +191,7 @@ var BrainFuck = new function()
 					alert("Memory underrun!");
                     return false;
                 }
+                this.programPointer++;
                 
 				break;
             }

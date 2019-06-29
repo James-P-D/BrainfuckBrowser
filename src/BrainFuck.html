@@ -11,12 +11,13 @@
 
 	Default Program:
 	<SELECT NAME="DefaultProgram" ID="DefaultProgram" onchange="BrainFuck.DefaultProgramSelect(document.getElementById('DefaultProgram').value)">
-	  <OPTION VALUE="" SELECTED="selected"></option>
+	  <OPTION VALUE=""></option>
+	  <OPTION VALUE="Alphabet">Alphabet</option>
 	  <OPTION VALUE="HelloWorld">Hello World</option>
 	  <OPTION VALUE="Quine">Quine</option>
 	</SELECT>
 	<BR />
-	<TEXTAREA NAME="Program" ID="Program" WRAP="HARD" COLS="80" ROWS="5">+[+>+[+]>+[+]<<]</TEXTAREA>
+	<TEXTAREA NAME="Program" ID="Program" WRAP="HARD" COLS="80" ROWS="15"></TEXTAREA>
 	<BR />
     <BUTTON NAME="LoadButton" ID="LoadButton" ONCLICK="BrainFuck.Load(document.getElementById('Program').value);">Load</Button>
     <BUTTON NAME="StepButton" ID="StepButton" ONCLICK="BrainFuck.Step();" disabled=>Step</Button>
