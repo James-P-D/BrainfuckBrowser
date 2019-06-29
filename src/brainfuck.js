@@ -170,9 +170,9 @@ var BrainFuck = new function()
                 this.memoryPointer--;
                 if (this.memoryPointer < 0)
                 {
-					this.memoryPointer = 0;
+					alert("Memory underrun!");
+                    return false;
                 }
-                this.programPointer++;
                 
 				break;
             }
