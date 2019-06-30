@@ -140,13 +140,23 @@ var BrainFuck = new function()
                 case END_WHILE :
                 {					
                     this.program.push(sourceCode[i]);
-					depth--;
+                    depth--;
+                    if (depth < 0) {
+                        alert('Unbalenced braces!');
+                        return;
+                    }
+
 					this.brackets[index] = this.startWhile[depth];
 					this.brackets[this.startWhile[depth]] = index;
 					index++;
                     break;					
                 }
             }
+        }
+
+        if (depth != 0) {
+            alert('Unbalenced braces!');
+            return;
         }
 
         this.programPointer = 0;
