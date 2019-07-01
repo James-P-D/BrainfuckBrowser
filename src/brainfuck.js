@@ -15,7 +15,7 @@ var BrainFuck = new function()
     this.memory = [];
     this.programPointer = 0;
     this.program = [];
-	this.brackets = {};
+    this.brackets = {};
 
     this.AllocateMemory = function(memorySize)
     {
@@ -32,22 +32,22 @@ var BrainFuck = new function()
 
     this.DefaultProgramSelect = function(defaultProgramSelect)
     {
-		if(defaultProgramSelect == 'Alphabet')
-		{
-			document.getElementById('Program').value =
-			    '++++++++++++++++++++++++++\n'+
-				'>\n'+
-				'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n'+
-				'<\n'+
-				'[\n'+
-				' >\n'+
-				' .\n'+
-				' +\n'+
-				' <\n'+
-				' -\n'+
-				']';
-		}
-		else if(defaultProgramSelect == 'Quine')
+        if(defaultProgramSelect == 'Alphabet')
+        {
+            document.getElementById('Program').value =
+                '++++++++++++++++++++++++++\n'+
+                '>\n'+
+                '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n'+
+                '<\n'+
+                '[\n'+
+                ' >\n'+
+                ' .\n'+
+                ' +\n'+
+                ' <\n'+
+                ' -\n'+
+                ']';
+        }
+        else if(defaultProgramSelect == 'Quine')
         {
             // TODO: This Quine doesn't work anymore due to memory underrun! Find another example!
             // From https://github.com/itchyny/brainfuck/blob/master/quine.bf
@@ -109,11 +109,11 @@ var BrainFuck = new function()
 
     this.Load = function(sourceCode)
     {
-		this.startWhile = [];
+        this.startWhile = [];
         this.program = [];
-		this.brackets = {};
-		var depth = 0;
-		var index = 0;
+        this.brackets = {};
+        var depth = 0;
+        var index = 0;
 
         for(var i = 0; i < sourceCode.length; i++)
         {
@@ -127,19 +127,19 @@ var BrainFuck = new function()
                 case OUTPUT :
                 {
                     this.program.push(sourceCode[i]);
-					index++;
+                    index++;
                     break;
                 }                
                 case WHILE_NOT_ZERO :
-                {					
+                {                    
                     this.program.push(sourceCode[i]);
                     this.startWhile[depth] = index;
-					depth++;
+                    depth++;
                     index++;
-                    break;					
+                    break;                    
                 }
                 case END_WHILE :
-                {					
+                {                    
                     this.program.push(sourceCode[i]);
                     depth--;
                     if (depth < 0) {
@@ -147,10 +147,10 @@ var BrainFuck = new function()
                         return;
                     }
 
-					this.brackets[index] = this.startWhile[depth];
-					this.brackets[this.startWhile[depth]] = index;
-					index++;
-                    break;					
+                    this.brackets[index] = this.startWhile[depth];
+                    this.brackets[this.startWhile[depth]] = index;
+                    index++;
+                    break;                    
                 }
             }
         }
@@ -162,7 +162,7 @@ var BrainFuck = new function()
 
         this.programPointer = 0;
 
-		var programTable = document.getElementById('ProgramTable');
+        var programTable = document.getElementById('ProgramTable');
         var html = BrainFuck.GenerateTable(this.program, this.programPointer);
         programTable.innerHTML = html;  
 
@@ -191,18 +191,18 @@ var BrainFuck = new function()
                 }
                 this.programPointer++;
                 
-				break;
+                break;
             }        
             case DECREMENT_DATA_POINTER :
             {
                 this.memoryPointer--;
                 if (this.memoryPointer < 0)
                 {
-					this.memoryPointer = this.memory.length - 1;
+                    this.memoryPointer = this.memory.length - 1;
                 }
                 this.programPointer++;
                 
-				break;
+                break;
             }
             case INCREMENT_DATA :
             {
@@ -213,7 +213,7 @@ var BrainFuck = new function()
                 }
                 this.programPointer++;
                 
-				break;
+                break;
             }
             case DECREMENT_DATA :
             {
@@ -224,7 +224,7 @@ var BrainFuck = new function()
                 }
                 this.programPointer++;
                 
-				break;
+                break;
             }
             case OUTPUT :
             {
@@ -232,7 +232,7 @@ var BrainFuck = new function()
                 outputTextArea.value = outputTextArea.value + String.fromCharCode(this.memory[this.memoryPointer]);
                 this.programPointer++;
                 
-				break;
+                break;
             }
             case INPUT : 
             {
@@ -242,49 +242,49 @@ var BrainFuck = new function()
                     inputValue = parseInt(prompt('Enter a value (0-255)', 0));
                 }
                 
-				this.memory[this.memoryPointer] = inputValue;
+                this.memory[this.memoryPointer] = inputValue;
                 this.programPointer++;
                 
-				break;
+                break;
             }
             case WHILE_NOT_ZERO :
             {
-				if (this.memory[this.memoryPointer] == 0)
-				{
-					this.programPointer = this.brackets[this.programPointer];
-				}
+                if (this.memory[this.memoryPointer] == 0)
+                {
+                    this.programPointer = this.brackets[this.programPointer];
+                }
                 this.programPointer++;
 
                 break;
             }
             case END_WHILE :
             {
-				this.programPointer = this.brackets[this.programPointer];
+                this.programPointer = this.brackets[this.programPointer];
                 break;
             }            
         }
-		
-		var updateProgress =document.getElementById('ShowProgress');
-		if(updateProgress.checked == true)
-		{
-			var programTable = document.getElementById('ProgramTable');
-			var html = BrainFuck.GenerateTable(this.program, this.programPointer);
-			programTable.innerHTML = html;  
-			
-			var memoryTable = document.getElementById('MemoryTable');
-			var html = BrainFuck.GenerateTable(this.memory, this.memoryPointer);
-			memoryTable.innerHTML = html;  
-		}
+        
+        var updateProgress =document.getElementById('ShowProgress');
+        if(updateProgress.checked == true)
+        {
+            var programTable = document.getElementById('ProgramTable');
+            var html = BrainFuck.GenerateTable(this.program, this.programPointer);
+            programTable.innerHTML = html;  
+            
+            var memoryTable = document.getElementById('MemoryTable');
+            var html = BrainFuck.GenerateTable(this.memory, this.memoryPointer);
+            memoryTable.innerHTML = html;  
+        }
 
         if (this.programPointer >= this.program.length)
-        {			
-			var programTable = document.getElementById('ProgramTable');
-			var html = BrainFuck.GenerateTable(this.program, this.programPointer);
-			programTable.innerHTML = html;
-			
-			var memoryTable = document.getElementById('MemoryTable');
-			var html = BrainFuck.GenerateTable(this.memory, this.memoryPointer);
-			memoryTable.innerHTML = html;  		
+        {            
+            var programTable = document.getElementById('ProgramTable');
+            var html = BrainFuck.GenerateTable(this.program, this.programPointer);
+            programTable.innerHTML = html;
+            
+            var memoryTable = document.getElementById('MemoryTable');
+            var html = BrainFuck.GenerateTable(this.memory, this.memoryPointer);
+            memoryTable.innerHTML = html;          
 
             alert('Complete!');
             return false;

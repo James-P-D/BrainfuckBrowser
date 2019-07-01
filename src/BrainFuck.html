@@ -1,42 +1,42 @@
 <HTML>
   <HEAD>
     <LINK REL="stylesheet" TYPE="text/css" HREF="style.css" />
-    <SCRIPT SRC="brainfuck.js" TYPE="text/javascript" ></SCRIPT>	
+    <SCRIPT SRC="brainfuck.js" TYPE="text/javascript" ></SCRIPT>
   </HEAD>
 
   <BODY>
-	<H1>Brainfuck Interpreter</H1>
-	
-	<H2>Program</H2>
+    <H1>Brainfuck Interpreter</H1>
+    
+    <H2>Program</H2>
 
-	<H3>Default Program:
+    <H3>Default Program:
       <SELECT ID="DefaultProgram" onchange="BrainFuck.DefaultProgramSelect(document.getElementById('DefaultProgram').value)">
         <OPTION VALUE=""></option>
-	    <OPTION VALUE="Alphabet">Alphabet</option>
-	    <OPTION VALUE="HelloWorld">Hello World</option>
-	    <OPTION VALUE="Quine">Quine</option>
-	  </SELECT>
+        <OPTION VALUE="Alphabet">Alphabet</option>
+        <OPTION VALUE="HelloWorld">Hello World</option>
+        <OPTION VALUE="Quine">Quine</option>
+      </SELECT>
      </H3>
      
-	<TEXTAREA ID="Program" WRAP="HARD" COLS="80" ROWS="15"></TEXTAREA>
-	
+    <TEXTAREA ID="Program" WRAP="HARD" COLS="80" ROWS="15"></TEXTAREA>
+    
     <BR />
     
     <BUTTON ID="LoadButton" ONCLICK="BrainFuck.Load(document.getElementById('Program').value);">Load</Button>
     <BUTTON ID="StepButton" ONCLICK="BrainFuck.Step();" disabled=>Step</Button>
     <BUTTON ID="RunButton" ONCLICK="BrainFuck.Run();" disabled=>Run</Button>
-	
+    
     <H3>Show Progress: <INPUT TYPE="checkbox" ID="ShowProgress" CHECKED="true"/></H3>
-	
-	<DIV id='ProgramTable'></div>
+    
+    <DIV id='ProgramTable'></div>
 
-	<H2>Memory</H2>
-	
-	<H3>Size: <INPUT ID="MemorySize" VALUE="100" ONKEYUP="BrainFuck.AllocateMemory(document.getElementById('MemorySize').value)"/></H3>
-	
-	<DIV id='MemoryTable'></div>
+    <H2>Memory</H2>
+    
+    <H3>Size: <INPUT ID="MemorySize" VALUE="100" ONKEYUP="BrainFuck.AllocateMemory(document.getElementById('MemorySize').value)"/></H3>
+    
+    <DIV id='MemoryTable'></div>
 
-	<H2>Output</H2>
-	<TEXTAREA ID="OutputTextArea" WRAP="SOFT" COLS="80" ROWS="5" READONLY="true"></TEXTAREA>
+    <H2>Output</H2>
+    <TEXTAREA ID="OutputTextArea" WRAP="SOFT" COLS="80" ROWS="5" READONLY="true"></TEXTAREA>
   </BODY>
 </HTML>  
