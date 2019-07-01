@@ -143,7 +143,7 @@ var BrainFuck = new function()
                     this.program.push(sourceCode[i]);
                     depth--;
                     if (depth < 0) {
-                        alert('Unbalenced braces!');
+                        alert('Unbalanced braces!');
                         return;
                     }
 
@@ -156,7 +156,7 @@ var BrainFuck = new function()
         }
 
         if (depth != 0) {
-            alert('Unbalenced braces!');
+            alert('Unbalanced braces!');
             return;
         }
 
@@ -187,8 +187,7 @@ var BrainFuck = new function()
                 this.memoryPointer++;
                 if (this.memoryPointer >= this.memory.length)
                 {
-                    alert("Memory overrun!");
-                    return false;
+                    this.memoryPointer = 0;
                 }
                 this.programPointer++;
                 
@@ -199,8 +198,7 @@ var BrainFuck = new function()
                 this.memoryPointer--;
                 if (this.memoryPointer < 0)
                 {
-					alert("Memory underrun!");
-                    return false;
+					this.memoryPointer = this.memory.length - 1;
                 }
                 this.programPointer++;
                 
