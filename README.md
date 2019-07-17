@@ -14,10 +14,10 @@ The eight commands in Brainfuck are detailed below. Any non-Brainfuck characters
 
 Command | Meaning
 ------- | -------------
-> | Increment the data pointer by one
-< | Decrement the data pointer by one
-+ | Increment the byte in memory location pointed at by data pointer by one
-- | Decrement the byte in memory location pointed at by data pointer by one
+&gt; | Increment the data pointer by one
+&lt; | Decrement the data pointer by one
+&#43; | Increment the byte in memory location pointed at by data pointer by one
+&minus; | Decrement the byte in memory location pointed at by data pointer by one
 . | Output the byte in memory location pointed at by data pointer
 , | Input a byte and place in memory location pointed at by data pointer
 &#91; | While the current byte pointed at in memory is zero
