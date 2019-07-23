@@ -21,4 +21,4 @@ Command | Meaning
 . | Output the byte in memory location pointed at by data pointer
 , | Input a byte and place in memory location pointed at by data pointer
 &#91; | While the current byte pointed at in memory is zero
-&#92; | End-while
+&#93; | End-while
